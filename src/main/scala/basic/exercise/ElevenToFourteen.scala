@@ -21,19 +21,32 @@ class ElevenToFourteen {
     //13. zip two list into one list without using list zip method
 
     def zip(list1: List[Int], list2: List[String]): List[(Int, String)] ={
-      var res: List[(Int,String)] = Nil
+  //    var res: List[(Int,String)] = Nil
+//      if(list1.size <= list2.size){
+//        list1.foldLeft(list2){(acc, elem) => {
+//          res = res :+ (elem, acc.head)
+//          acc.tail
+//        }}
+//      }else{
+//        list2.foldLeft(list1){(acc, elem) => {
+//          res = res :+ (acc.head, elem)
+//          acc.tail
+//        }}
+//      }
+
+      // AFTER REMOVING var
+      val starter: List[(Int,String)] = Nil
       if(list1.size <= list2.size){
-        list1.foldLeft(list2){(acc, elem) => {
-          res = res :+ (elem, acc.head)
-          acc.tail
+        val l = List.range(0,list1.size)
+        l.foldLeft(starter){(acc, elem) => {
+          acc :+ (list1(elem), list2(elem))
         }}
       }else{
-        list2.foldLeft(list1){(acc, elem) => {
-          res = res :+ (acc.head, elem)
-          acc.tail
+        val l = List.range(0, list2.size)
+        l.foldLeft(starter){(acc, elem) => {
+          acc :+ (list1(elem), list2(elem))
         }}
       }
-      res
     }
 
   //14. Merge two sorted list into one sorted list:
@@ -61,7 +74,7 @@ object Assign11to14{
     val map2 = Map("hi" -> 2, "you" -> 1)
     println(cls.concatenate(map1, map2))
 
-    println(cls.zip(List(1,2,3,4), List("one", "two", "three", "four", "five")))
+    println(cls.zip(List(1,2,3,4,5,6), List("one", "two", "three", "four", "five")))
     val list1 = List(1,3,5)
     val list2 = List(2,4,6, 10 )
     println(cls.merge(list1, list2))

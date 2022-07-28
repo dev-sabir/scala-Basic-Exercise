@@ -1,28 +1,47 @@
 package basic.exercise
 
+import scala.runtime.Nothing$
+
 //16. Engineering Colleges have four branches CS,IT,EC,ME. Spilt student list into four list as CS, IT,EC,ME. Student represented by :
 case class Student(id: Int, name: String, age: Int, branch: String)
 class SplitBy {
 
   def splitByBranch(list: List[Student]): (List[Student], List[Student], List[Student], List[Student]) ={
-    var l1:List[Student] =List()
-    var l2:List[Student] = List()
-    var l3: List[Student] = List()
-    var l4: List[Student] = List()
+//    var l1:List[Student] =List()
+//    var l2:List[Student] = List()
+//    var l3: List[Student] = List()
+//    var l4: List[Student] = List()
+//
+//    for(student <- list) {
+//      student.branch match {
+//        case "CS" =>
+//          l1 = l1 :+ student
+//        case "IT" =>
+//          l2 = l2 :+ student
+//        case "EC" =>
+//          l3 = l3 :+ student
+//        case "ME" =>
+//          l4 = l4 :+ student
+//      }
+//    }
+//    (l1,l2,l3,l4)
 
-    for(student <- list) {
+    //Without Using var
+    val starter:(List[Student], List[Student], List[Student], List[Student])=(List(), List(), List(), List())
+    val res = list.foldLeft(starter){(acc, student) =>{
       student.branch match {
         case "CS" =>
-          l1 = l1 :+ student
+          (acc._1 :+ student,acc._2, acc._3, acc._4)
         case "IT" =>
-          l2 = l2 :+ student
+          (acc._1, acc._2 :+ student, acc._3, acc._4)
         case "EC" =>
-          l3 = l3 :+ student
+          (acc._1,acc._2, acc._3 :+ student,acc._4)
         case "ME" =>
-          l4 = l4 :+ student
+          (acc._1, acc._2, acc._3, acc._4 :+ student)
       }
     }
-    (l1,l2,l3,l4)
+    }
+    res
   }
 }
 
@@ -40,7 +59,7 @@ object Sixteen {
     val student10 = Student(10,"Spider Man", 20, "IT")
 
     val students = new SplitBy
-    val studentList = List(student1, student2, student3, student4, student5, student6, student7, student8)
+    val studentList = List(student1, student2, student3, student4, student5, student6, student7, student8, student9,student10)
     println(students.splitByBranch(studentList))
   }
 

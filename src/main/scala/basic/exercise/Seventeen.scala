@@ -9,27 +9,37 @@ class Eval {
     def getCompanyValue(company: Company): Int = {
       val noOfBranches = company.branches.size
       val branches = company.branches
-//      println(branches)
-      var tCust = 0
-      var compVal=0
-      val noOfConsultants = branches.foldLeft(0){(acc, elem)=> {
-//        println(elem.consultants)
-        tCust += elem.consultants.foldLeft(0){(cons, e) => {
-//          println(e.portfolio.size)
-          compVal += e.portfolio.foldLeft(0){(cValue, cPoint) => {
-            cValue + cPoint.value
-          }
-          }
-          cons + e.portfolio.size
-        }}
-        acc + elem.consultants.size
-
-      }}
+////      println(branches)
+//      var tCust = 0
+//      var compVal=0
+//      val noOfConsultants = branches.foldLeft(0){(acc, elem)=> {
+////        println(elem.consultants)
+//        tCust += elem.consultants.foldLeft(0){(cons, e) => {
+////          println(e.portfolio.size)
+//          compVal += e.portfolio.foldLeft(0){(cValue, cPoint) => {
+//            cValue + cPoint.value
+//          }
+//          }
+//          cons + e.portfolio.size
+//        }}
+//        acc + elem.consultants.size
+//
+//      }}
       //  println(tCust)
      //   println(noOfConsultants)
       //   println(compVal)
-      compVal
+      //compVal
 
+
+      //  AFTER REMOVING var
+      val totalCompVal = branches.foldLeft(0){(acc, elem) => {
+      acc + elem.consultants.foldLeft(0){(cons, e) => {
+        cons + e.portfolio.foldLeft(0){(cValue, cPoint) => {
+          cValue+cPoint.value
+        }}
+      }}
+     }}
+    totalCompVal
     }
 }
 

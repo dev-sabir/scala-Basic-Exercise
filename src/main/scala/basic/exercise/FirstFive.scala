@@ -29,7 +29,7 @@ class FirstFive {
 
   //  2.1Rotation of An Array
   def rotate(array: Array[Int], r: Int): Array[Int] ={
-      val ar = r%4  //If rotation size is greater than Array Size
+      val ar = r%array.length  //If rotation size is greater than Array Size
       array.drop(ar) ++ array.take(ar)
   }
 

@@ -25,13 +25,24 @@ class SixToTen {
 
   // 9. Remove all keys from Map if their value are odd
   def removeOdd(map: Map[String, Int]) : Map[String, Int] ={
-    var res:Map[String, Int] = map
-    for((key, value) <- map){
-      if(value%2 != 0){
-        res = res.-(key)
+//    var res:Map[String, Int] = map
+//    for((key, value) <- map){
+//      if(value%2 != 0){
+//        res = res.-(key)
+//      }
+//    }
+//    res
+
+    //After Removing var
+    val x:Map[String, Int] = Map()
+    map.foldLeft(x){(acc, elem ) =>
+      if(elem._2%2 == 0){
+        acc + elem
+      } else{
+        acc
       }
     }
-    res
+
   }
 
   // 10. Remove list of keys from Map(just like Map’s “ --” function )
@@ -57,7 +68,7 @@ object AssignSixToTen{
     val str : String = "hello how are you hello you"
     println(x.wordCount(str))
 
-    println(x.removeOdd(Map("Dharm"->1,"Adi"->2,"John"->3,"Tyryn"->4)))
+    println(x.removeOdd(Map("Dharm"->1,"Adi"->2,"John"->3,"Tyryn"->4, "Bob" -> 3, "David"-> 10)))
 
     println(x.removeKeys(List("hello", "world"), Map("world"->2,"hello"->3,"john"->5,"adi"->6)))
 
